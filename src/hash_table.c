@@ -1,75 +1,51 @@
-// Include the necessary header for the hash table implementation
+// Include necessary header files
 #include <stdio.h>
 #include <stdlib.h>
 #include <string.h>
 
-// Define the structure for the hash table node
-typedef struct Node {
-    char key[256];
-    char value[256];
-    struct Node* next;
-} Node;
-
-// Define the structure for the hash table
+// Define the hash table structure
 typedef struct HashTable {
     int size;
-    Node** buckets;
+    int capacity;
+    int* keys;
+    int* values;
 } HashTable;
 
 // Function to create a new hash table
-HashTable* createHashTable(int size) {
+HashTable* createHashTable(int capacity) {
     HashTable* table = malloc(sizeof(HashTable));
-    table->size = size;
-    table->buckets = malloc(size * sizeof(Node*));
-    for (int i = 0; i < size; i++) {
-        table->buckets[i] = NULL;
-    }
+    table->size = 0;
+    table->capacity = capacity;
+    table->keys = malloc(sizeof(int) * capacity);
+    table->values = malloc(sizeof(int) * capacity);
     return table;
 }
 
 // Function to insert a key-value pair into the hash table
-void insert(HashTable* table, char* key, char* value) {
-    int index = hashFunction(key, table->size);
-    Node* node = table->buckets[index];
-    while (node != NULL) {
-        if (strcmp(node->key, key) == 0) {
-            // Update the value if the key already exists
-            strcpy(node->value, value);
-            return;
-        }
-        node = node->next;
+void insert(HashTable* table, int key, int value) {
+    int index = key % table->capacity;
+    if (table->keys[index] == 0) {
+        table->keys[index] = key;
+        table->values[index] = value;
+        table->size++;
+    } else {
+        printf("Key already exists in the hash table\n");
     }
-    // Create a new node and add it to the linked list
-    Node* newNode = malloc(sizeof(Node));
-    strcpy(newNode->key, key);
-    strcpy(newNode->value, value);
-    newNode->next = table->buckets[index];
-    table->buckets[index] = newNode;
 }
 
-// Function to get the value associated with a key
-char* getValue(HashTable* table, char* key) {
-    int index = hashFunction(key, table->size);
-    Node* node = table->buckets[index];
-    while (node != NULL) {
-        if (strcmp(node->key, key) == 0) {
-            return node->value;
+// Function to print the hash table
+void printHashTable(HashTable* table) {
+    for (int i = 0; i < table->capacity; i++) {
+        if (table->keys[i] != 0) {
+            printf("Key: %d, Value: %d\n", table->keys[i], table->values[i]);
         }
-        node = node->next;
     }
-    return NULL;
 }
 
-// Function to free the hash table
-void freeHashTable(HashTable* table) {
-    for (int i = 0; i < table->size; i++) {
-        Node* node = table->buckets[i];
-        while (node != NULL) {
-            Node* next = node->next;
-            free(node);
-            node = next;
-        }
-    }
-    free(table->buckets);
-    free(table);
+int main() {
+    HashTable* table = createHashTable(10);
+    insert(table, 5, 10);
+    insert(table, 15, 20);
+    printHashTable(table);
+    return 0;
 }
