@@ -1,41 +1,23 @@
-# Ignore the following files
-.vscode/
-__pycache__/
-*.pyc
-*.log
-*.tmp
-*.env
-node_modules/
-dist/
-.gitignore
-*.swp
-*.swo
-
-# Ignore IDE files
+# Ignore everything in the .idea directory
 .idea/
-.c9/
-.eclipse/
-.vs/
-.pydevproject
 
-# Ignore build artifacts
-build/
-target/
+# Ignore everything in the .vscode directory
+.vscode/
 
-# Ignore Docker files
-docker-compose.yml
-docker-compose.override.yml
-docker-compose.local.yml
+# Ignore everything in the node_modules directory
+node_modules/
 
-# Ignore AWS credentials
-.aws/
+# Ignore everything in the venv directory
+venv/
 
-# Ignore AWS SAM files
-samconfig.toml
-samconfig.json
+# Ignore everything in the .git directory
+.git/
 
-# Ignore AWS Lambda logs
-lambda-logs/
+# Ignore everything in the .gitignore file itself
+.gitignore
 
-# Ignore AWS X-Ray files
-xray/
+# Ignore everything in the .DS_Store directory
+.DS_Store
+
+# Ignore everything in the .env file
+.env
