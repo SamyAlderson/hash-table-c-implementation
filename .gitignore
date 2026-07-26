@@ -1,15 +1,41 @@
+# Ignore the following files
+.vscode/
 __pycache__/
 *.pyc
-.pytest_cache/
-.env
-*.egg-info/
-dist/
-build/
-.venv/
+*.log
+*.tmp
+*.env
 node_modules/
+dist/
+.gitignore
+*.swp
+*.swo
+
+# Ignore IDE files
+.idea/
+.c9/
+.eclipse/
+.vs/
+.pydevproject
+
+# Ignore build artifacts
+build/
 target/
-bin/
-obj/
-*.o
-*.so
-*.dylib/
+
+# Ignore Docker files
+docker-compose.yml
+docker-compose.override.yml
+docker-compose.local.yml
+
+# Ignore AWS credentials
+.aws/
+
+# Ignore AWS SAM files
+samconfig.toml
+samconfig.json
+
+# Ignore AWS Lambda logs
+lambda-logs/
+
+# Ignore AWS X-Ray files
+xray/
