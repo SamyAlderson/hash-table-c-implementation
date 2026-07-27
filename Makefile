@@ -1,19 +1,14 @@
 CC=gcc
-CFLAGS=-Wall -Wextra -std=c11
+CFLAGS=-Wall -Wextra -pedantic
+LDFLAGS=-lm
 
-SRC=$(wildcard src/*.c)
-OBJ=$(SRC:.c=.o)
-BIN=hash-table-c-implementation
+all: main
 
-all: $(BIN)
+main: main.o
+	$(CC) $(LDFLAGS) main.o -o main
 
-$(BIN): $(OBJ)
-	$(CC) $(CFLAGS) -o $@ $^
+main.o: main.c
+	$(CC) $(CFLAGS) -c main.c
 
 clean:
-	rm -f $(OBJ) $(BIN)
-
-test:
-	@echo "No tests configured"
-
-.PHONY: all clean test
+	rm -f main.o main
