@@ -1,23 +1,32 @@
-# Ignore everything in the .idea directory
-.idea/
+# ignore .env file
+.env
 
-# Ignore everything in the .vscode directory
+# ignore node_modules and yarn.lock
+node_modules/
+yarn.lock
+
+# ignore IDE files
+.idea/
 .vscode/
 
-# Ignore everything in the node_modules directory
-node_modules/
+# ignore build artifacts
+build/
+dist/
 
-# Ignore everything in the venv directory
-venv/
+# ignore Docker stuff
+docker-compose.yml
+docker/
+.Dockerfile
 
-# Ignore everything in the .git directory
-.git/
-
-# Ignore everything in the .gitignore file itself
-.gitignore
-
-# Ignore everything in the .DS_Store directory
+# ignore macOS and Linux stuff
 .DS_Store
+Thumbs.db
 
-# Ignore everything in the .env file
-.env
+# ignore Python stuff
+__pycache__/
+*.pyc
+*.pyo
+
+# ignore other stuff
+*.log
+*.tmp
